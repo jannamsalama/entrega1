@@ -1,0 +1,78 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package inventario1;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author JANNAM
+ */
+public class Inventario1 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        String[] brand = {"PP" , "PVC" , "ILP80"};
+		double[] width  = {220 , 160 , 300};
+		double[] batch = {6365 , 8456 ,1459};
+		int[]   amount = {1000 ,1600, 550 };
+		
+		while(true){
+			int choose = chooseFunction();
+			switch(choose){
+				case 1 -> printStore(brand , width , batch ,amount );
+				
+				case 2 -> changeCount(brand , amount);
+					
+				case 3 -> {
+                                    return;
+                                          }
+					
+				default -> System.out.println ("Función no disponible");
+                                      }
+                            }
+    }
+	
+	public static void changeCount(String [] brand,int[] amount){
+		Scanner ran = new Scanner(System.in);
+		//int number_1 = ran.nextInt();
+		for(int i = 0;i < brand.length; i++){
+			System.out.println(brand[i]);
+			amount[i] = ran.nextInt();
+		}
+	}
+	
+	public static void printStore(String [] brand,double[] width, double [] batch, int [] amount ){
+		int totalCount  = 0;
+		double totalMetrosCuadrados  = 0;
+		 System.out.println ("                    Lista de inventario del centro comercial                    ");
+		 System.out.println ("Tipo,          Ancho,           Lote,         Cantidad,");
+		for(int i = 0; i < brand.length; i++){
+			System.out.println(brand[i]+"		"+width[i]+"		"+batch[i]+"		"+amount[i]);
+			totalCount += amount[i];
+			totalMetrosCuadrados += width[i]*amount[i];
+		}
+		
+		 System.out.println ("Total de metros lineales:" + totalCount);
+		 System.out.println ("Cantidad total de metros cuadrados:" + totalMetrosCuadrados);
+	}
+	
+	public static int chooseFunction(){
+		 System.out.println ("                   Gestión de inventario                ");
+		 System.out.println ("1. Ver lista de inventario");
+		 System.out.println ("2. Modificar metros lineales del inventario del producto");
+		 System.out.println ("3. Salir");
+		 System.out.println ("Seleccione las funciones que desea usar:");
+		Scanner ran = new Scanner(System.in);
+		int number = ran.nextInt();
+		return number;
+	}
+	
+    }
+    
+
